@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>colorful squares</title>
+    <link rel="stylesheet" href="CSS/stylesheet.css"> 
+
+    
+
+</head>
+<body>
+
+    <!--import vue js-->
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <!-- div, in which the vue app will run -->
+    <div id="app">
+        <br><p>{{ hello }}</p><br><hr>
+
+        <div id="controller">
+            <h4>Controller section</h4>
+            <p>The elements below can be modified via this controller and flip to their backside when clicked on.</p>
+            <form @submit.prevent="updateState($event)">
+                <div id="controller-grid">    
+                    <div id="numberSelection">
+                        <label for="totalNumber">How many squares?</label><br>
+                        <input id="totalNumber" type="number" class="number" name="totalNumber" :value="appState.numberOfCards">
+                    </div>
+                    <div id="sizeSelection">
+                        <label for="size">What size? [in mm]</label><br>
+                        <input id="size" type="number" class="number" name="size" :value="appState.cardSize"></input>
+                    </div>
+                    
+                    <div id="colorSelectionL">
+                        <label for="colorLarge">Color large:</label><br>
+                        <input type="color" id="colorLarge" name="colorLarge" :value="appState.colorA">
+                    </div>
+                    <div id="colorSelectionM">
+                        <label for="colorMedium">Color medium:</label><br>
+                        <input type="color" id="colorMedium" name="colorMedium" :value="appState.colorB">
+                    </div>
+                    <div id="colorSelectionS">
+                        <label for="colorSmall">Color small:</label><br>
+                        <input type="color" id="colorSmall" name="colorSmall" :value="appState.colorC">
+                    </div>
+                    <div id="controllerSubmit">
+                        <input type="submit" value="Apply" >
+                    </div>
+                </div>
+            </form> 
+        </div>
+    
+        <br><hr>
+
+        <h4>Display</h4>
+        <div id="cards" class="wrapper" :style="wrapperStyle" >
+            <card-component v-for = "element in bugHelperArray" :change="change"></card-component>    
+        </div>
+
+        <br><br><hr>
+
+        <div id="credits">
+            <p>Check out the source code on github</p>
+            <a href="https://github.com/howto123/theHowToProject-cards">go to directory</a>
+        </div>
+    </div>
+
+
+    <!-- template -->
+    <script type="text/x-template" id="card-template">
+        <div class="class-A" :style="styleA" @click="onClickModifier">
+            <div class="class-B" :style="styleB">
+                <div class="class-C" :style="styleC"></div>
+            </div>
+        </div>
+    </script>
+
+    <!-- actual logic -->
+    <script src="./my-script.js"></script>
+
+</body>
